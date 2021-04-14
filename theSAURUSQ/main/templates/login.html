@@ -1,3 +1,6 @@
+{% load static %}
+{% load humanize %}
+
 {% if message %}
     <script>
         alert('{{ message }}');
@@ -8,6 +11,10 @@
         <title>
             Login
         </title>
+        <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}"/>
+    <!--  Font Awesome-->
+    <link rel="stylesheet" href="{% static 'f5.15.2/css/all.min.css' %}"/>
     </head>
     <body>
         <form action="/login" method="POST">
