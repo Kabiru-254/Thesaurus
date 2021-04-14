@@ -1,0 +1,41 @@
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}"/>
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+            <div class="container">
+                <a class="navbar-brand" href="#">theSAURUS</a>
+                <!--<img src="theSAURUS logo.png" alt="theSAURUS"/>-->
+                <button class="navbar-togglerbtn btn-dark btn-lg" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            
+            </div>
+
+        </nav>
+
+        <div class="container py-5 col-md-8 offset-2">
+
+            <form method="POST" action="/signup">
+                {% for field in form %}
+                    {{field.label}}<br>
+                    {{field}}<br>
+                {% endfor %}
+                <button type="submit">Sign Up</button><br>
+                <a href="/login"><button type="submit">Login</button></a><br>       
+            </form>
+
+        </div>
+
+        
+    </body>
+</html>

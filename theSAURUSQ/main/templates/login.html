@@ -1,0 +1,21 @@
+{% if message %}
+    <script>
+        alert('{{ message }}');
+    </script>
+{% endif %}
+<html>
+    <head>
+        <title>
+            Login
+        </title>
+    </head>
+    <body>
+        <form action="/login" method="POST">
+            {% for login in form %}
+                {{login.label}}<br>
+                {{login}}<br>
+            {% endfor %}
+            <button type="submit">Login</button>
+        </form>
+    </body>
+</html>

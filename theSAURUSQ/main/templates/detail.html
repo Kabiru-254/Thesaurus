@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Page</title>
     <!-- Bootstrap 4 -->
-    <link rel="stylesheet" href="/static/bootstrap.min.css"/>
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}"/>
+    <!--  Font Awesome-->
+    <link rel="stylesheet" href="{% static 'f5.15.2/css/all.min.css' %}"/>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -18,6 +21,14 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
+                <form class="ml-auto">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control " placeholder="Search">
+                        <div class="input-group-append">
+                        <button class="btn btn-success" type="submit" id="button-addon2">Search</button>
+                        </div>
+                    </div>
+                </form>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
                     <a class="nav-link" href="#">Home </a>
@@ -39,27 +50,62 @@
         </div>
     </nav>
 
-    <!-- Search section -->
-    <div class="container py-5">
-        
-    </div>
-
     <!-- Question list-->
 
     <div class="container">
-       {% for quest in quests %} 
-        <div class="card mb-3">
-            <div class="card-body">
-                <h4 class="card-title"><a href="/detail/{{quest.id}}">{{quest.title}}</a></h4>
-                <p class="card-text">{{quest.detail}}</p>
+       <h2 class="my-4">{{quest.title}}</h2>
+        <p>
+            <span class="mr-4">{{quest.add_time|naturalday}}</span>
+            <a href="#">{{quest.user.username}}</a>
+        </p>
+        <hr/>
+        <div class="row">
+            <div class="col-1">
+                <div class="upvote">
+                    <strong>123</strong><br/>
+                    <span class="text-success">
+                        <i class="fa fa-arrow-up fa-2x"></i>
+                    </span>
+                </div>
+                <div class="downvote mt-3">
+                    <span class="text-danger">
+                        <i class="fa fa-arrow-down fa-2x"></i><br/>
+                    </span>
+                    <strong>123</strong>
+                </div>
+            </div>
+            <div class="col-11">
                 <p>
-                    <a href="#" class="mr-2">{{quest.user.username}}</a>
-                    <a href="#" class="mr-2">5 answers</a>
-                    <a href="#" class="mr-2">10 comments</a>
+                    {{ answer.detail}}
                 </p>
+                <p>
+                    <a href="#" class="mr-3">{{answer.user.username}}</a>
+                    <span class="mr-3">4 comments</span>
+                    <span>{{answer.add_time|date:'d/m/Y h:i:s'}}</span>
+                </p>
+                <P>
+                    tags:
+                    {% for tag in tags%}
+                    <a href="#" class="badge badge-secondary p-1">{{tag}}</a>
+                    {% endfor %}
+                </P>
+
+                    <!--Comment Section-->
+                    <h3 class="my-4">Comments</h3>
+                    {% for comment  in comments %}
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <p >{{comment.comment}}</p>
+                            <p>
+                                <a href="#">{{comment.user.username}}</a>
+                            </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+
             </div>
         </div>
-        {% endfor %}
     </div>
 
     
