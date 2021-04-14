@@ -1,0 +1,31 @@
+body{
+    background-image: url("../images/login2.jpg");
+    background-size: 100%;
+}
+.container{
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    margin-top: 50px;
+    text-align: left;
+    padding: 10px;
+    font-weight: bolder;
+}
+label{
+    font-size: 25px;
+    padding: 5px;
+    color: yellow;
+}
+button {
+    width: 225px;
+    color: yellow;
+    background-color: silver;
+}
+
+.name{
+    align-content: center;
+    text-align: center;
+    font-size: 50px;
+    color: white;
+    background-color: grey;
+}
