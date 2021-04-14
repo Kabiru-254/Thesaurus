@@ -1,3 +1,4 @@
+from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect
 from .models import Question, Answer, Comment
 from django.core.paginator import Paginator
@@ -55,11 +56,17 @@ def login(request):
 def signup(request):
     if request.method == "POST":
         user = User()
-        form = UserCreationForm()
         user.username = request.POST.get('username')
-        user.password = request.POST.get('password1')
+        user.is_superuser = True
+        user.is_staff = True
+        user.password = make_password(request.POST.get('password1'))
         user.save()
         return redirect('/')
 
     form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
+
+
+def log_out(request):
+    logout(request)
+    return redirect('/login')
